@@ -26,4 +26,3 @@ public class PlayGame {
         return rand.nextInt(diceMaxValue - diceMinValue) + diceMinValue;
     }
 }
-}
