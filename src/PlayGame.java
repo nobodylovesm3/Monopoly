@@ -222,19 +222,18 @@ public class PlayGame {
     public static void inputPlayersNumber() {
         Scanner input = new Scanner(System.in);
 
-        System.out.println("Enter the number of players: (max 8, min 2) ");
-        int numberOfPlayers = 0;
+        System.out.println("Enter the number of players: (min 2, max 8) ");
 
         while (true) {
             try {
-                numberOfPlayers = Integer.parseInt(input.nextLine());
-                if (numberOfPlayers > 2 && numberOfPlayers < 9) {
+                playersAmount = Integer.parseInt(input.nextLine());
+                if (playersAmount > 1 && playersAmount < 9) {
                     break;
                 } else {
-                    System.out.println("Max players - 8, min players - 2. ");
+                    System.out.println("Min players - 2, max players - 8. ");
                 }
             } catch (Exception e) {
-                System.out.println("Max players - 8, min players - 2. ");
+                System.out.println("Min players - 2, max players - 8. ");
             }
         }
 
@@ -268,7 +267,7 @@ public class PlayGame {
     }
 
     public static void outputPlayerCurrentLocation(int[] playerLocation, int i) {
-        System.out.println("Location: " + playerLocation[i] + " " + readyBoard[playerLocation[i]][0] + ", " + readyBoard[playerLocation[i]][1] + ", " + readyBoard[playerLocation[i]][2] + ", " + readyBoard[playerLocation[i]][3] + ", " + readyBoard[playerLocation[i]][4] + ", " + readyBoard[playerLocation[i]][5] + ", " + readyBoard[playerLocation[i]][6]);
+        System.out.println("Location: [" + (playerLocation[i] + 1) + "] " + readyBoard[playerLocation[i]][0] + ", type: " + readyBoard[playerLocation[i]][1] + ".");
     }
 
     public static boolean isSectorOwned() {
@@ -299,7 +298,7 @@ public class PlayGame {
     }
 
     public static void drawCommunityChestCards() {
-        cardNumber = rand.nextInt(4);
+        cardNumber = rand.nextInt(3) + 1;
         cardName = readyCommunityCards[cardNumber][0];
         cardAction = readyCommunityCards[cardNumber][1];
         cardLoseWinMoney = readyCommunityCards[cardNumber][2];
@@ -307,7 +306,7 @@ public class PlayGame {
     }
 
     public static void drawChanceCards() {
-        cardNumber = rand.nextInt(4);
+        cardNumber = rand.nextInt(3) + 1;
         cardName = readyChanceCards[cardNumber][0];
         cardAction = readyChanceCards[cardNumber][1];
         cardLoseWinMoney = readyChanceCards[cardNumber][2];
@@ -355,11 +354,13 @@ public class PlayGame {
         readString = input.nextLine();
         while (readString != null) {
             if (readString.isEmpty()) {
-                int hello = 3;
-                System.out.println(hello);
+                firstDiceThrows[i] = diceRoll();
+                outputResultDiceOne(i);
+
+                secondDiceThrows[i] = diceRoll();
+                outputResultDiceTwo(i);
                 break;
             }
-
             if (input.hasNextLine()) {
                 readString = input.nextLine();
             } else {
@@ -480,7 +481,7 @@ public class PlayGame {
                         //check for pair
                         proceedWithTurns(playerLocation, i);
                     } else {
-                        System.out.println(playersNames[i] + " doesn't have enough money. ");
+                        System.out.println(playersNames[i] + " doesn't have enough money.");
                         spentRoundsInJail[i]++;
                     }
                     break;
@@ -534,7 +535,7 @@ public class PlayGame {
             if (sectorAction.equals("draw community chest card")) {
                 drawCommunityChestCards();
 
-                System.out.println(playersNames[i] + " drew the " + cardName + " card.");
+                System.out.println(playersNames[i] + " drew the '" + cardName + "' card.");
 
                 winMoneyCard(i);
                 loseMoneyCard(i);
@@ -545,7 +546,7 @@ public class PlayGame {
             if (sectorAction.equals("draw chance card")) {
                 drawChanceCards();
 
-                System.out.println(playersNames[i] + " drew the " + cardName + " card.");
+                System.out.println(playersNames[i] + " drew the '" + cardName + "' card.");
 
                 winMoneyCard(i);
                 loseMoneyCard(i);
@@ -563,7 +564,7 @@ public class PlayGame {
         if (!isInJail[i]) {
             purchasableSectorsOptions(i);
         }
-        System.out.println("What will you decide:\n(1)proceed further\n(2)check your current options");
+        System.out.println("What will you decide to do:\n(1)proceed further\n(2)check your current options");
         isReady = false;
 
         proceedFurtherOrCheckOptions(i);
@@ -656,7 +657,7 @@ public class PlayGame {
             }
 
             System.out.println(playersNames[i] + " 's turn: ");
-
+            System.out.println();
             for (int repeats = 0; repeats <= countDicePairsThrownInRow[i]; repeats++) {
                 if (countDicePairsThrownInRow[i] < 3) {
                     if (!isInJail[i]) {
@@ -674,7 +675,7 @@ public class PlayGame {
     }
 
     public static void printNextTurn() {
-        System.out.println("******************************************************************************************************************");
+        System.out.println("*********************************************************************************************************************************************");
         System.out.println();
 
         System.out.println("Turn: " + (++allTurns));
@@ -695,16 +696,16 @@ public class PlayGame {
             bids[i] = 0;
         }
         int highestBid = defaultStartPosition;
-        int decision = -1;
+        int decision = 0;
         int amountOfParticipatingPlayers = playersAmount;
         boolean isWinnerFound = false;
         while (amountOfParticipatingPlayers != 1 || !isWinnerFound) {
             for (int i = 0; i < playersAmount; i++) {
-                if (isPlayerNotParticipatingInTheAuction[i] == false) {
+                if (!isPlayerNotParticipatingInTheAuction[i]) {
                     System.out.println(playersNames[i] + "'s turn.");
                     System.out.println("Currently bidding: " + amountOfParticipatingPlayers);
                     if (amountOfParticipatingPlayers <= 1) {
-                        System.out.println("Only 1 player is bidding - " + playersNames[i] + " won the property for " + highestBid + ".");
+                        System.out.println("Only 1 player is bidding - " + playersNames[i] + " won the property for " + highestBid + "$.");
                         playersMoney[i] -= highestBid;
                         sectorOwnership = playersNames[i];
                         isWinnerFound = true;
@@ -714,13 +715,13 @@ public class PlayGame {
                     while (true) {
                         try {
                             decision = Integer.parseInt(input.nextLine());
-                            if (decision == 0 || decision == 1) {
+                            if (decision == 1 || decision == 2) {
                                 break;
                             } else {
-                                System.out.println("Input either 1 or 0.");
+                                System.out.println("Input either 1 or 2.");
                             }
                         } catch (Exception e) {
-                            System.out.println("Input either 1 or 0.");
+                            System.out.println("Input either 1 or 2.");
                         }
                     }
                     if (decision == 1) {
@@ -749,7 +750,7 @@ public class PlayGame {
                         if (highestBid < bids[i]) {
                             highestBid = bids[i];
                         }
-                    } else if (decision == 0) {
+                    } else if (decision == 2) {
                         amountOfParticipatingPlayers--;
                         isPlayerNotParticipatingInTheAuction[i] = true;
                         System.out.println(playersNames[i] + " left the auction.");
@@ -762,7 +763,7 @@ public class PlayGame {
     public static void purchasableSectorsOptions(int i) {
         if (isSectorPurchasable()) {
             if (!isSectorOwned()) {
-                System.out.println("You can either:\n (1) buy the property for " + sectorCost + "$;\n(2) start an auction for it.");
+                System.out.println("You can either:\n(1) buy the property for " + sectorCost + "$;\n(2) start an auction for it.");
                 while (true) {
                     try {
                         choice = Integer.parseInt(input.nextLine());
@@ -787,7 +788,7 @@ public class PlayGame {
                     playersMoney[i] -= (Integer.parseInt(sectorCost) / 10) + ((Integer.parseInt(readyBoard[i][6]) * (Integer.parseInt(sectorCost) / 2)));
 
                     int sectorOwnerIndex = 0;
-                    while (playersNames[sectorOwnerIndex] != sectorOwnership) {
+                    while (playersNames[sectorOwnerIndex].equals(sectorOwnership)) {
                         sectorOwnerIndex++;
                     }
                     System.out.println(playersNames[i] + " paid " + playersNames[sectorOwnerIndex] + " " + (Integer.parseInt(sectorCost) / 10) + ((Integer.parseInt(readyBoard[i][6]) * (Integer.parseInt(sectorCost) / 2))) + "$");
@@ -798,5 +799,4 @@ public class PlayGame {
             }
         }
     }
-//to here
 }
