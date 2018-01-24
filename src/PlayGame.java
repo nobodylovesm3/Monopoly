@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -59,6 +60,14 @@ public class PlayGame {
     public static boolean[] hasGetOutOfJailCard = new boolean[maxAmountOfPlayers];
     public static int[] spentRoundsInJail = {defaultStartPosition, defaultStartPosition, defaultStartPosition, defaultStartPosition, defaultStartPosition, defaultStartPosition, defaultStartPosition, defaultStartPosition};
     public static boolean[] isInJail = new boolean[maxAmountOfPlayers];
+    public static int[] numberOfBrownPropertiesOwnedPerPlayer = {0, 0, 0, 0, 0, 0, 0, 0};
+    public static int[] numberOfLightBluePropertiesOwnedPerPlayer = {0, 0, 0, 0, 0, 0, 0, 0};
+    public static int[] numberOfPurplePropertiesOwnedPerPlayer = {0, 0, 0, 0, 0, 0, 0, 0};
+    public static int[] numberOfOrangePropertiesOwnedPerPlayer = {0, 0, 0, 0, 0, 0, 0, 0};
+    public static int[] numberOfRedPropertiesOwnedPerPlayer = {0, 0, 0, 0, 0, 0, 0, 0};
+    public static int[] numberOfYellowPropertiesOwnedPerPlayer = {0, 0, 0, 0, 0, 0, 0, 0};
+    public static int[] numberOfGreenPropertiesOwnedPerPlayer = {0, 0, 0, 0, 0, 0, 0, 0};
+    public static int[] numberOfDarkBluePropertiesOwnedPerPlayer = {0, 0, 0, 0, 0, 0, 0, 0};
 
     public static void main(String[] args) {
         prepareGameBoardInformation();
@@ -66,6 +75,70 @@ public class PlayGame {
         int[] playerLocation = new int[playersAmount];
         inputPlayersNames();
         startGame(playerLocation);
+    }
+
+
+    private static void goThroughOptions(int i) {
+
+    }
+
+    public static void countAllPropertiesPerColor(int i) {
+        countPlayerBrownProperties(i);
+        countPlayerLightBlueProperties(i);
+        countPlayerPurpleProperties(i);
+        countPlayerOrangeProperties(i);
+        countPlayerRedProperties(i);
+        countPlayerYellowProperties(i);
+        countPlayerGreenProperties(i);
+        countPlayerDarkBlueProperties(i);
+    }
+
+    public static void countPlayerBrownProperties(int i) {
+        if (readyBoard[i][5].equals("brown") && !isSectorPurchasable()) {
+            numberOfBrownPropertiesOwnedPerPlayer[i]++;
+        }
+    }
+
+    public static void countPlayerLightBlueProperties(int i) {
+        if (readyBoard[i][5].equals("lightblue") && !isSectorPurchasable()) {
+            numberOfLightBluePropertiesOwnedPerPlayer[i]++;
+        }
+    }
+
+    public static void countPlayerPurpleProperties(int i) {
+        if (readyBoard[i][5].equals("purple") && !isSectorPurchasable()) {
+            numberOfPurplePropertiesOwnedPerPlayer[i]++;
+        }
+    }
+
+    public static void countPlayerOrangeProperties(int i) {
+        if (readyBoard[i][5].equals("orange") && !isSectorPurchasable()) {
+            numberOfOrangePropertiesOwnedPerPlayer[i]++;
+        }
+    }
+
+    public static void countPlayerRedProperties(int i) {
+        if (readyBoard[i][5].equals("red") && !isSectorPurchasable()) {
+            numberOfRedPropertiesOwnedPerPlayer[i]++;
+        }
+    }
+
+    public static void countPlayerYellowProperties(int i) {
+        if (readyBoard[i][5].equals("yellow") && !isSectorPurchasable()) {
+            numberOfYellowPropertiesOwnedPerPlayer[i]++;
+        }
+    }
+
+    public static void countPlayerGreenProperties(int i) {
+        if (readyBoard[i][5].equals("green") && !isSectorPurchasable()) {
+            numberOfGreenPropertiesOwnedPerPlayer[i]++;
+        }
+    }
+
+    public static void countPlayerDarkBlueProperties(int i) {
+        if (readyBoard[i][5].equals("darkblue") && !isSectorPurchasable()) {
+            numberOfDarkBluePropertiesOwnedPerPlayer[i]++;
+        }
     }
 
     public static void fillProperties() {
@@ -242,13 +315,31 @@ public class PlayGame {
 
     public static void inputPlayersNames() {
         System.out.println("Enter your names.");
+
         for (int i = 0; i < playersAmount; i++) {
-            System.out.println("Player " + (i + 1) + " : ");
-            playersNames[i] = input.nextLine();
-            System.out.println();
+            int matches;
+            do {
+                matches = 0;
+                System.out.println("Player " + (i + 1) + " : ");
+                playersNames[i] = input.nextLine();
+
+
+                for (int j = 0; j < playersAmount; j++) {
+                    while (playersNames[i].equals("")) {
+                        System.out.println("Input something, please: ");
+                        playersNames[i] = input.nextLine();
+                    }
+
+                    if (i != j) {
+                        if (playersNames[i].equals(playersNames[j])) {
+                            matches++;
+                            System.out.println("Input a different name: ");
+                        }
+                    }
+                }
+            } while (matches > 0);
         }
     }
-
 
     public static int diceRoll() {
         return rand.nextInt(6) + 1;
@@ -478,7 +569,6 @@ public class PlayGame {
 
                         rowTheDices(i);
 
-                        //check for pair
                         proceedWithTurns(playerLocation, i);
                     } else {
                         System.out.println(playersNames[i] + " doesn't have enough money.");
@@ -578,7 +668,7 @@ public class PlayGame {
         do {
             while (true) {
                 try {
-                    choice = input.nextInt();
+                    choice = Integer.parseInt(input.nextLine());
                     if (choice == 1 || choice == 2) {
                         break;
                     } else {
@@ -587,8 +677,8 @@ public class PlayGame {
                 } catch (Exception e) {
                     System.out.println("Input either:\n(1) to proceed further;\n(2) to check your current options");
                 }
-                System.out.println();
             }
+            System.out.println();
 
             if (choice == 1) {
                 isReady = true;
@@ -600,10 +690,6 @@ public class PlayGame {
         } while (!isReady);
 
 
-    }
-
-    private static void goThroughOptions(int i) {
-        System.out.println("not yet");
     }
 
     public static void positionChangeCardDraw(int[] playerLocation, int i) {
@@ -685,6 +771,7 @@ public class PlayGame {
         while (!hasWon) {
             printNextTurn();
             makeTurn(playerLocation);
+            countAllPropertiesPerColor(playerLocation[0]);
         }
     }
 
@@ -722,6 +809,7 @@ public class PlayGame {
                             }
                         } catch (Exception e) {
                             System.out.println("Input either 1 or 2.");
+
                         }
                     }
                     if (decision == 1) {
