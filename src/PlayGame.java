@@ -11,7 +11,7 @@ public class PlayGame {
     public static String[] rawInformationBoard = new String[numberOfBoardSectors];
     public static String[][] readyBoard = new String[numberOfBoardSectors][boardProperties];
 
-    public static final int numberCards = 5;
+    public static final int numberCards = 4;
     public static final int cardsPropertiesAmount = 4;
 
     public static String[] rawCommunityCards = new String[numberCards];
@@ -33,7 +33,7 @@ public class PlayGame {
     public static String cardLoseWinMoney;
     public static String cardChangePlayerPosition;
 
-    public static char choice;
+    public static int choice;
 
     public static final int defaultStartPosition = 0;
     public static final int maxRoundsInJail = 3;
@@ -85,94 +85,94 @@ public class PlayGame {
     }
 
     public static void fillLightBlueProperties() {
-        rawInformationBoard[6] = "THE ANGEL ISLINGTON, property, buy, 100, no owner, lightblue,0";
-        rawInformationBoard[8] = "EUSTON ROAD, property, buy, 100, no owner, lightblue,0";
-        rawInformationBoard[9] = "PENTONVILLE ROAD, property, buy, 120, no owner, lightblue,0";
+        rawInformationBoard[6] = "THE ANGEL ISLINGTON, property, buy, 100, no owner, lightblue, 0";
+        rawInformationBoard[8] = "EUSTON ROAD, property, buy, 100, no owner, lightblue, 0";
+        rawInformationBoard[9] = "PENTONVILLE ROAD, property, buy, 120, no owner, lightblue, 0";
     }
 
     public static void fillPurpleProperties() {
-        rawInformationBoard[11] = "PALL MALL, property, buy, 140, no owner, purple,0";
-        rawInformationBoard[13] = "WHITEHALL, property, buy, 140, no owner, purple,0";
-        rawInformationBoard[14] = "NORTHUMRL'D AVENUE, property, buy, 160, no owner, purple,0";
+        rawInformationBoard[11] = "PALL MALL, property, buy, 140, no owner, purple, 0";
+        rawInformationBoard[13] = "WHITEHALL, property, buy, 140, no owner, purple, 0";
+        rawInformationBoard[14] = "NORTHUMRL'D AVENUE, property, buy, 160, no owner, purple, 0";
     }
 
     public static void fillOrangeProperties() {
-        rawInformationBoard[16] = "BOW STREET, property, buy, 180, no owner, orange,0";
-        rawInformationBoard[18] = "MARLBOROUGH STREET, property, buy, 180, no owner, orange,0";
-        rawInformationBoard[19] = "VINE STREET, property, buy, 200, no owner, orange,0";
+        rawInformationBoard[16] = "BOW STREET, property, buy, 180, no owner, orange, 0";
+        rawInformationBoard[18] = "MARLBOROUGH STREET, property, buy, 180, no owner, orange, 0";
+        rawInformationBoard[19] = "VINE STREET, property, buy, 200, no owner, orange, 0";
     }
 
     public static void fillRedProperties() {
 
-        rawInformationBoard[21] = "STRAND, property, buy, 220, no owner, red,0";
-        rawInformationBoard[23] = "FLEET STREET, property, buy, 220, no owner, red,0";
-        rawInformationBoard[24] = "TRAFALGAR SQUARE, property, buy, 240, no owner, red,0";
+        rawInformationBoard[21] = "STRAND, property, buy, 220, no owner, red, 0";
+        rawInformationBoard[23] = "FLEET STREET, property, buy, 220, no owner, red, 0";
+        rawInformationBoard[24] = "TRAFALGAR SQUARE, property, buy, 240, no owner, red, 0";
     }
 
     public static void fillYellowProperties() {
-        rawInformationBoard[26] = "LEICESTER SQUARE, property, buy, 260, no owner, yellow,0";
-        rawInformationBoard[27] = "COVENTRY STREET, property, buy, 260, no owner, yellow,0";
-        rawInformationBoard[29] = "PICCADILLY, property, buy, 280, no owner, yellow,0";
+        rawInformationBoard[26] = "LEICESTER SQUARE, property, buy, 260, no owner, yellow, 0";
+        rawInformationBoard[27] = "COVENTRY STREET, property, buy, 260, no owner, yellow, 0";
+        rawInformationBoard[29] = "PICCADILLY, property, buy, 280, no owner, yellow, 0";
     }
 
     public static void fillGreenProperties() {
-        rawInformationBoard[31] = "REGENT STREET, property, buy, 300, no owner, green,0";
-        rawInformationBoard[32] = "OXFORD STREET, property, buy, 300, no owner, green,0";
-        rawInformationBoard[34] = "BOND STREET, property, buy, 320, no owner, green,0";
+        rawInformationBoard[31] = "REGENT STREET, property, buy, 300, no owner, green, 0";
+        rawInformationBoard[32] = "OXFORD STREET, property, buy, 300, no owner, green, 0";
+        rawInformationBoard[34] = "BOND STREET, property, buy, 320, no owner, green, 0";
     }
 
     public static void fillDarkBlueProperties() {
-        rawInformationBoard[37] = "PARK LANE, property, buy, 350, no owner, darkblue,0";
-        rawInformationBoard[39] = "MAYFAIR, property, buy, 400, no owner, darkblue,0";
+        rawInformationBoard[37] = "PARK LANE, property, buy, 350, no owner, darkblue, 0";
+        rawInformationBoard[39] = "MAYFAIR, property, buy, 400, no owner, darkblue, 0";
     }
 
     public static void fillTrainStations() {
-        rawInformationBoard[5] = "KINGS CROSS STATION, station, buy, 200, no owner, -,0";
-        rawInformationBoard[15] = "MARYLEBONE STATION, station, buy, 200, no owner, -,0";
-        rawInformationBoard[25] = "FENCHURCH ST. STATION, station, buy, 200, no owner, -,0";
-        rawInformationBoard[35] = "LIVERPOOL ST. STATION, station, buy, 200, no owner, -,0";
+        rawInformationBoard[5] = "KINGS CROSS STATION, station, buy, 200, no owner, -, 0";
+        rawInformationBoard[15] = "MARYLEBONE STATION, station, buy, 200, no owner, -, 0";
+        rawInformationBoard[25] = "FENCHURCH ST. STATION, station, buy, 200, no owner, -, 0";
+        rawInformationBoard[35] = "LIVERPOOL ST. STATION, station, buy, 200, no owner, -, 0";
     }
 
     public static void fillTaxes() {
-        rawInformationBoard[4] = "INCOME TAX, station, pay, 200, -, -,0";
-        rawInformationBoard[38] = "SUPER TAX, station, pay, 100, -, -,0";
+        rawInformationBoard[4] = "INCOME TAX, station, pay, 200, -, -, 0";
+        rawInformationBoard[38] = "SUPER TAX, station, pay, 100, -, -, 0";
     }
 
     public static void fillUtilityServices() {
-        rawInformationBoard[12] = "ELECTRIC COMPANY, utility, buy, 150, -, -,0";
-        rawInformationBoard[28] = "WATER WORKS, utility, buy, 150, -, -,0";
+        rawInformationBoard[12] = "ELECTRIC COMPANY, utility, buy, 150, -, -, 0";
+        rawInformationBoard[28] = "WATER WORKS, utility, buy, 150, -, -, 0";
     }
 
     public static void fillCommunityChests() {
-        rawInformationBoard[1] = "COMMUNITY CHEST, chest, draw community chest card, -, -, -,0";
-        rawInformationBoard[17] = "COMMUNITY CHEST, chest, draw community chest card, -, -, -,0";
-        rawInformationBoard[33] = "COMMUNITY CHEST, chest, draw community chest card, -, -, -,0";
+        rawInformationBoard[2] = "COMMUNITY CHEST, chest, draw community chest card, -, -, -, 0";
+        rawInformationBoard[17] = "COMMUNITY CHEST, chest, draw community chest card, -, -, -, 0";
+        rawInformationBoard[33] = "COMMUNITY CHEST, chest, draw community chest card, -, -, -, 0";
     }
 
     public static void fillChances() {
-        rawInformationBoard[7] = "CHANCE, chance, draw chance card, -, -, -,0";
-        rawInformationBoard[22] = "CHANCE, chance, draw chance card, -, -, -,0";
-        rawInformationBoard[36] = "CHANCE, chance, draw chance card, -, -, -,0";
+        rawInformationBoard[7] = "CHANCE, chance, draw chance card, -, -, -, 0";
+        rawInformationBoard[22] = "CHANCE, chance, draw chance card, -, -, -, 0";
+        rawInformationBoard[36] = "CHANCE, chance, draw chance card, -, -, -, 0";
     }
 
     public static void fillStart() {
-        rawInformationBoard[0] = "200$ AFTER YOU PASS, go, win, 200, -, -,0";
+        rawInformationBoard[0] = "200$ AFTER YOU PASS, go, win, 200, -, -, 0";
     }
 
     public static void fillParkPlace() {
-        rawInformationBoard[20] = "FREE PARKING, parking, pay, 0, -, -,0";
+        rawInformationBoard[20] = "FREE PARKING, parking, pay, 0, -, -, 0";
     }
 
     public static void fillJail() {
-        rawInformationBoard[10] = "JAIL, jail, jail options, -, -, -,0";
-        rawInformationBoard[30] = "GO TO JAIL, imprison, imprison, -, -, -,0";
+        rawInformationBoard[10] = "JAIL, jail, jail options, -, -, -, 0";
+        rawInformationBoard[30] = "GO TO JAIL, imprison, imprison, -, -, -, 0";
     }
 
     public static void fillCommunityCardsInformation() {
-        rawCommunityCards[0] = "GET OUT OF JAIL, escape, -, -1 ";
+        rawCommunityCards[0] = "GET OUT OF JAIL, escape, -, -1";
         rawCommunityCards[1] = "ADVANCE TO GO, move, -, 0 ";
-        rawCommunityCards[2] = "BANK ERROR IN YOUR FAVOR, win, 200, -1 ";
-        rawCommunityCards[3] = "PAY HOSPITAL, pay, 100, -1 ";
+        rawCommunityCards[2] = "BANK ERROR IN YOUR FAVOR, win, 200, -1";
+        rawCommunityCards[3] = "PAY HOSPITAL, pay, 100, -1";
     }
 
     public static void formatCommunityCards() {
@@ -219,8 +219,6 @@ public class PlayGame {
         fillParkPlace();
     }
 
-    //players
-
     public static void inputPlayersNumber() {
         Scanner input = new Scanner(System.in);
 
@@ -237,7 +235,6 @@ public class PlayGame {
                 }
             } catch (Exception e) {
                 System.out.println("Max players - 8, min players - 2. ");
-                continue;
             }
         }
 
@@ -274,7 +271,7 @@ public class PlayGame {
         System.out.println("Location: " + playerLocation[i] + " " + readyBoard[playerLocation[i]][0] + ", " + readyBoard[playerLocation[i]][1] + ", " + readyBoard[playerLocation[i]][2] + ", " + readyBoard[playerLocation[i]][3] + ", " + readyBoard[playerLocation[i]][4] + ", " + readyBoard[playerLocation[i]][5] + ", " + readyBoard[playerLocation[i]][6]);
     }
 
-    public static boolean isSectordOwned() {
+    public static boolean isSectorOwned() {
         return !sectorOwnership.equals("no owner");
     }
 
@@ -442,7 +439,7 @@ public class PlayGame {
 
     public static void goToJail(int[] playerLocation, int i) {
         System.out.println(playersNames[i] + " has been in jail for " + spentRoundsInJail[i] + " turns.");
-        System.out.println("You can: (1) try to throw a pair; \n(2) bribe the guard with 100$;\n(3) wait it out(released after " + (3 - spentRoundsInJail[i]) + " turns);\n(4) use a 'Get Out Of Jail' card if you have one.");
+        System.out.println("You can:\n(1) try to throw a pair;\n(2) bribe the guard with 100$;\n(3) wait it out(released after " + (3 - spentRoundsInJail[i]) + " turns);\n(4) use a 'Get Out Of Jail' card if you have one.");
 
         int decision;
         do {
@@ -456,7 +453,6 @@ public class PlayGame {
                     }
                 } catch (Exception e) {
                     System.out.println("Input either 1, 2, 3 or 4 (option).");
-                    continue;
                 }
             }
             switch (decision) {
@@ -565,9 +561,48 @@ public class PlayGame {
         }
 
         if (!isInJail[i]) {
-            //propertiesMEH
-            xxxxxx;
+            purchasableSectorsOptions(i);
         }
+        System.out.println("What will you decide:\n(1)proceed further\n(2)check your current options");
+        isReady = false;
+
+        proceedFurtherOrCheckOptions(i);
+
+        updateIrrelevantSectorsInformation(playerLocation, i);
+        System.out.println("*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!");
+        System.out.println();
+    }
+
+    public static void proceedFurtherOrCheckOptions(int i) {
+        do {
+            while (true) {
+                try {
+                    choice = input.nextInt();
+                    if (choice == 1 || choice == 2) {
+                        break;
+                    } else {
+                        System.out.println("Input either:\n(1) to proceed further;\n(2) to check your current options");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Input either:\n(1) to proceed further;\n(2) to check your current options");
+                }
+                System.out.println();
+            }
+
+            if (choice == 1) {
+                isReady = true;
+            } else if (choice == 2) {
+                System.out.println("The available options for building and selling houses (shown if you own all properties from at least one color):");
+                goThroughOptions(i);
+                isReady = false;
+            }
+        } while (!isReady);
+
+
+    }
+
+    private static void goThroughOptions(int i) {
+        System.out.println("not yet");
     }
 
     public static void positionChangeCardDraw(int[] playerLocation, int i) {
@@ -654,7 +689,114 @@ public class PlayGame {
 
     public static void doAuction() {
         boolean[] isPlayerNotParticipatingInTheAuction = new boolean[playersAmount];
+        int[] bids = new int[playersAmount];
+        for (int i = 0; i < isPlayerNotParticipatingInTheAuction.length; i++) {
+            isPlayerNotParticipatingInTheAuction[i] = false;
+            bids[i] = 0;
+        }
+        int highestBid = defaultStartPosition;
+        int decision = -1;
+        int amountOfParticipatingPlayers = playersAmount;
+        boolean isWinnerFound = false;
+        while (amountOfParticipatingPlayers != 1 || !isWinnerFound) {
+            for (int i = 0; i < playersAmount; i++) {
+                if (isPlayerNotParticipatingInTheAuction[i] == false) {
+                    System.out.println(playersNames[i] + "'s turn.");
+                    System.out.println("Currently bidding: " + amountOfParticipatingPlayers);
+                    if (amountOfParticipatingPlayers <= 1) {
+                        System.out.println("Only 1 player is bidding - " + playersNames[i] + " won the property for " + highestBid + ".");
+                        playersMoney[i] -= highestBid;
+                        sectorOwnership = playersNames[i];
+                        isWinnerFound = true;
+                        break;
+                    }
+                    System.out.println("Would you like to:\n(1) bid;\n(2) leave?");
+                    while (true) {
+                        try {
+                            decision = Integer.parseInt(input.nextLine());
+                            if (decision == 0 || decision == 1) {
+                                break;
+                            } else {
+                                System.out.println("Input either 1 or 0.");
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Input either 1 or 0.");
+                        }
+                    }
+                    if (decision == 1) {
+                        System.out.println("Enter your bid (has to be over " + highestBid + ", you can bail out by bidding below 0): ");
+                        do {
+                            while (true) {
+                                try {
+                                    bids[i] = Integer.parseInt(input.nextLine());
+                                    if (bids[i] < 0 || bids[i] > highestBid) {
+                                        break;
+                                    } else {
+                                        System.out.println("Input a number smaller than 0 to bail out or a number higher than " + highestBid + " to bid.");
+                                    }
+                                } catch (Exception e) {
+                                    System.out.println("Input a number smaller than 0 to bail out or a number higher than " + highestBid + " to bid.");
+                                }
+                            }
+                            if (bids[i] < 0) {
+                                amountOfParticipatingPlayers--;
+                                isPlayerNotParticipatingInTheAuction[i] = true;
+                                System.out.println(playersNames[i] + " left the auction.");
+                            } else {
+                                System.out.println(playersNames[i] + " bid " + bids[i]);
+                            }
+                        } while (bids[i] <= highestBid && !isPlayerNotParticipatingInTheAuction[i]);
+                        if (highestBid < bids[i]) {
+                            highestBid = bids[i];
+                        }
+                    } else if (decision == 0) {
+                        amountOfParticipatingPlayers--;
+                        isPlayerNotParticipatingInTheAuction[i] = true;
+                        System.out.println(playersNames[i] + " left the auction.");
+                    }
+                }
+            }
+        }
+    }
 
+    public static void purchasableSectorsOptions(int i) {
+        if (isSectorPurchasable()) {
+            if (!isSectorOwned()) {
+                System.out.println("You can either:\n (1) buy the property for " + sectorCost + "$;\n(2) start an auction for it.");
+                while (true) {
+                    try {
+                        choice = Integer.parseInt(input.nextLine());
+                        if (choice == 1 || choice == 2) {
+                            break;
+                        } else {
+                            System.out.println("Input either:\n(1) to purchase the property;\n(2) to start an auction.");
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Input either:\n(1) to purchase the property;\n(2) to start an auction.");
+                    }
+                }
+                if (choice == 1) {
+                    playersMoney[i] -= Integer.parseInt(sectorCost);
+                    sectorOwnership = playersNames[i];
+                } else if (choice == 2) {
+                    System.out.println("Auction!");
+                    doAuction();
+                }
+            } else {
+                if (!sectorOwnership.equals(playersNames[i])) {
+                    playersMoney[i] -= (Integer.parseInt(sectorCost) / 10) + ((Integer.parseInt(readyBoard[i][6]) * (Integer.parseInt(sectorCost) / 2)));
+
+                    int sectorOwnerIndex = 0;
+                    while (playersNames[sectorOwnerIndex] != sectorOwnership) {
+                        sectorOwnerIndex++;
+                    }
+                    System.out.println(playersNames[i] + " paid " + playersNames[sectorOwnerIndex] + " " + (Integer.parseInt(sectorCost) / 10) + ((Integer.parseInt(readyBoard[i][6]) * (Integer.parseInt(sectorCost) / 2))) + "$");
+                    playersMoney[i] += (Integer.parseInt(sectorCost) / 10);
+                } else {
+                    System.out.println(playersNames[i] + " is waiting for their next turn on their property.");
+                }
+            }
+        }
     }
 //to here
 }
