@@ -79,7 +79,7 @@ public class PlayGame {
 
 
     private static void goThroughOptions(int i) {
-
+        System.out.println("Still not ready - coming soon.");
     }
 
     public static void countAllPropertiesPerColor(int i) {
