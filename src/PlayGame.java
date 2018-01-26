@@ -243,7 +243,7 @@ public class PlayGame {
 
     public static void fillCommunityCardsInformation() {
         rawCommunityCards[0] = "GET OUT OF JAIL, escape, -, -1";
-        rawCommunityCards[1] = "ADVANCE TO GO, move, -, 0 ";
+        rawCommunityCards[1] = "ADVANCE TO GO, move, -, 0";
         rawCommunityCards[2] = "BANK ERROR IN YOUR FAVOR, win, 200, -1";
         rawCommunityCards[3] = "PAY HOSPITAL, pay, 100, -1";
     }
@@ -251,7 +251,7 @@ public class PlayGame {
     public static void formatCommunityCards() {
         for (int i = 0; i < rawCommunityCards.length; i++) {
             for (int j = 0; j < cardsPropertiesAmount; j++) {
-                readyChanceCards[i][j] = rawCommunityCards[i].split(", ")[j];
+                readyCommunityCards[i][j] = rawCommunityCards[i].split(", ")[j];
             }
         }
     }
@@ -300,7 +300,7 @@ public class PlayGame {
         while (true) {
             try {
                 playersAmount = Integer.parseInt(input.nextLine());
-                if (playersAmount > 1 && playersAmount < 9) {
+                if (playersAmount >= minAmountOfPlayers && playersAmount <= maxAmountOfPlayers) {
                     break;
                 } else {
                     System.out.println("Min players - 2, max players - 8. ");
@@ -389,7 +389,7 @@ public class PlayGame {
     }
 
     public static void drawCommunityChestCards() {
-        cardNumber = rand.nextInt(3) + 1;
+        cardNumber = rand.nextInt(4);
         cardName = readyCommunityCards[cardNumber][0];
         cardAction = readyCommunityCards[cardNumber][1];
         cardLoseWinMoney = readyCommunityCards[cardNumber][2];
@@ -397,7 +397,7 @@ public class PlayGame {
     }
 
     public static void drawChanceCards() {
-        cardNumber = rand.nextInt(3) + 1;
+        cardNumber = rand.nextInt(4);
         cardName = readyChanceCards[cardNumber][0];
         cardAction = readyChanceCards[cardNumber][1];
         cardLoseWinMoney = readyChanceCards[cardNumber][2];
@@ -771,7 +771,6 @@ public class PlayGame {
         while (!hasWon) {
             printNextTurn();
             makeTurn(playerLocation);
-            countAllPropertiesPerColor(playerLocation[0]);
         }
     }
 
@@ -879,7 +878,10 @@ public class PlayGame {
                     while (playersNames[sectorOwnerIndex].equals(sectorOwnership)) {
                         sectorOwnerIndex++;
                     }
-                    System.out.println(playersNames[i] + " paid " + playersNames[sectorOwnerIndex] + " " + (Integer.parseInt(sectorCost) / 10) + ((Integer.parseInt(readyBoard[i][6]) * (Integer.parseInt(sectorCost) / 2))) + "$");
+                    if (sectorOwnerIndex == 0) {
+                        sectorOwnerIndex = 1;
+                    }
+                    System.out.println(playersNames[i] + " paid " + playersNames[sectorOwnerIndex - 1] + " " + (Integer.parseInt(sectorCost) / 10) + ((Integer.parseInt(readyBoard[i][6]) * (Integer.parseInt(sectorCost) / 2))) + "$");
                     playersMoney[i] += (Integer.parseInt(sectorCost) / 10);
                 } else {
                     System.out.println(playersNames[i] + " is waiting for their next turn on their property.");
